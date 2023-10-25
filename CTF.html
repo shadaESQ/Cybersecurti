@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Hacked</title>
+    <style>
+        body {
+            background-color: #222;
+            color: #ff4d4d;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        
+        .container {
+            text-align: center;
+        }
+        
+        .message {
+            font-size: 30px;
+            margin-bottom: 20px;
+        }
+        
+        .alarm {
+            font-size: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="message">
+            <p>This website has been hacked!</p>
+        </div>
+        <div class="alarm">
+            <p>Security Alert! Security Alert!</p>
+        </div>
+    </div>
+
+    <!-- The <iframe> (and video player) will replace this <div> tag. -->
+    <div id="player" style="display:none;"></div>
+
+    <script>
+        var tag = document.createElement('script');
+        tag.src = "https://www.youtube.com/iframe_api";
+        var firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+        var player;
+
+        function onYouTubeIframeAPIReady() {
+            player = new YT.Player('player', {
+                height: '0',
+                width: '0',
+                videoId: 'PI5d0Ky6qxM', // Your video ID here
+                playerVars: {
+                    autoplay: 1,
+                    controls: 0,
+                    disablekb: 1,
+                    loop: 1,
+                    rel: 0,
+                    showinfo: 0,
+                    autohide: 1,
+                    modestbranding: 1,
+                    wmode: "transparent",
+                    playsinline: 1
+                },
+                events: {
+                    'onReady': function(event) {
+                        event.target.mute();
+                        event.target.playVideo();
+                    }
+                }
+            });
+        }
+
+        function enableSound() {
+            player.unMute();
+        }
+
+        // Uncomment below if you want to enable sound on click
+        document.addEventListener("click", enableSound);
+    </script>
+
+</body>
+
+</html>
